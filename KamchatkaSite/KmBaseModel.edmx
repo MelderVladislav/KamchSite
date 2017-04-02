@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище u0263406_kmtableModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CategoryTable">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="bigint" Nullable="false" />
+          <Property Name="SeasonID" Type="bigint" Nullable="false" />
+          <Property Name="CategoryNameRus" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CategoryNameCh" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CategoryDescriptionRus" Type="nvarchar(max)" />
+          <Property Name="CategoryDescriptionCh" Type="nvarchar(max)" />
+          <Property Name="CategoryPicture" Type="nvarchar(max)" />
+          <Property Name="CategoryUrlName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SeasonTable">
+          <Key>
+            <PropertyRef Name="SeasonID" />
+          </Key>
+          <Property Name="SeasonID" Type="bigint" Nullable="false" />
+          <Property Name="SeasonNameRus" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SeasonNameCh" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SeasonDescriptionRus" Type="nvarchar(max)" />
+          <Property Name="SeasonDescriptionCh" Type="nvarchar(max)" />
+          <Property Name="SeasonUrlName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SeasonMainImage" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServiceImagesTable">
+          <Key>
+            <PropertyRef Name="ImageID" />
+            <PropertyRef Name="ServiceID" />
+          </Key>
+          <Property Name="ImageID" Type="bigint" Nullable="false" />
+          <Property Name="ServiceID" Type="bigint" Nullable="false" />
+          <Property Name="ImageSrc" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ServiceTable">
+          <Key>
+            <PropertyRef Name="ServiceID" />
+          </Key>
+          <Property Name="ServiceID" Type="bigint" Nullable="false" />
+          <Property Name="CategoryID" Type="bigint" Nullable="false" />
+          <Property Name="ServiceNameRus" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ServiceNameCh" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ServiceDescriptionRus" Type="nvarchar(max)" />
+          <Property Name="ServiceDescriptionCh" Type="nvarchar(max)" />
+          <Property Name="ServiceMainPicture" Type="nvarchar(max)" />
+          <Property Name="ServicePrice" Type="money" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ImagesKey">
+          <End Role="ServiceTable" Type="Self.ServiceTable" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ServiceImagesTable" Type="Self.ServiceImagesTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceTable">
+              <PropertyRef Name="ServiceID" />
+            </Principal>
+            <Dependent Role="ServiceImagesTable">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SeasonKey">
+          <End Role="SeasonTable" Type="Self.SeasonTable" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CategoryTable" Type="Self.CategoryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SeasonTable">
+              <PropertyRef Name="SeasonID" />
+            </Principal>
+            <Dependent Role="CategoryTable">
+              <PropertyRef Name="SeasonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceKey">
+          <End Role="CategoryTable" Type="Self.CategoryTable" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ServiceTable" Type="Self.ServiceTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryTable">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="ServiceTable">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище u0263406_kmtableModelContainer">
+          <EntitySet Name="CategoryTable" EntityType="Self.CategoryTable" Schema="u0263406_kmadmin" store:Type="Tables" />
+          <EntitySet Name="SeasonTable" EntityType="Self.SeasonTable" Schema="u0263406_kmadmin" store:Type="Tables" />
+          <EntitySet Name="ServiceImagesTable" EntityType="Self.ServiceImagesTable" Schema="u0263406_kmadmin" store:Type="Tables" />
+          <EntitySet Name="ServiceTable" EntityType="Self.ServiceTable" Schema="u0263406_kmadmin" store:Type="Tables" />
+          <AssociationSet Name="FK_ImagesKey" Association="Self.FK_ImagesKey">
+            <End Role="ServiceTable" EntitySet="ServiceTable" />
+            <End Role="ServiceImagesTable" EntitySet="ServiceImagesTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SeasonKey" Association="Self.FK_SeasonKey">
+            <End Role="SeasonTable" EntitySet="SeasonTable" />
+            <End Role="CategoryTable" EntitySet="CategoryTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceKey" Association="Self.FK_ServiceKey">
+            <End Role="CategoryTable" EntitySet="CategoryTable" />
+            <End Role="ServiceTable" EntitySet="ServiceTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="u0263406_kmtableModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CategoryTable">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int64" Nullable="false" />
+          <Property Name="SeasonID" Type="Int64" Nullable="false" />
+          <Property Name="CategoryNameRus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CategoryNameCh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CategoryDescriptionRus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryDescriptionCh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryPicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryUrlName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="SeasonTable" Relationship="Self.FK_SeasonKey" FromRole="CategoryTable" ToRole="SeasonTable" />
+          <NavigationProperty Name="ServiceTable" Relationship="Self.FK_ServiceKey" FromRole="CategoryTable" ToRole="ServiceTable" />
+        </EntityType>
+        <EntityType Name="SeasonTable">
+          <Key>
+            <PropertyRef Name="SeasonID" />
+          </Key>
+          <Property Name="SeasonID" Type="Int64" Nullable="false" />
+          <Property Name="SeasonNameRus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SeasonNameCh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SeasonDescriptionRus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SeasonDescriptionCh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SeasonUrlName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SeasonMainImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="CategoryTable" Relationship="Self.FK_SeasonKey" FromRole="SeasonTable" ToRole="CategoryTable" />
+        </EntityType>
+        <EntityType Name="ServiceImagesTable">
+          <Key>
+            <PropertyRef Name="ImageID" />
+            <PropertyRef Name="ServiceID" />
+          </Key>
+          <Property Name="ImageID" Type="Int64" Nullable="false" />
+          <Property Name="ServiceID" Type="Int64" Nullable="false" />
+          <Property Name="ImageSrc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ServiceTable" Relationship="Self.FK_ImagesKey" FromRole="ServiceImagesTable" ToRole="ServiceTable" />
+        </EntityType>
+        <EntityType Name="ServiceTable">
+          <Key>
+            <PropertyRef Name="ServiceID" />
+          </Key>
+          <Property Name="ServiceID" Type="Int64" Nullable="false" />
+          <Property Name="CategoryID" Type="Int64" Nullable="false" />
+          <Property Name="ServiceNameRus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ServiceNameCh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ServiceDescriptionRus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ServiceDescriptionCh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ServiceMainPicture" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ServicePrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="CategoryTable" Relationship="Self.FK_ServiceKey" FromRole="ServiceTable" ToRole="CategoryTable" />
+          <NavigationProperty Name="ServiceImagesTable" Relationship="Self.FK_ImagesKey" FromRole="ServiceTable" ToRole="ServiceImagesTable" />
+        </EntityType>
+        <Association Name="FK_SeasonKey">
+          <End Role="SeasonTable" Type="Self.SeasonTable" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CategoryTable" Type="Self.CategoryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SeasonTable">
+              <PropertyRef Name="SeasonID" />
+            </Principal>
+            <Dependent Role="CategoryTable">
+              <PropertyRef Name="SeasonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServiceKey">
+          <End Role="CategoryTable" Type="Self.CategoryTable" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ServiceTable" Type="Self.ServiceTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryTable">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="ServiceTable">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImagesKey">
+          <End Role="ServiceTable" Type="Self.ServiceTable" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ServiceImagesTable" Type="Self.ServiceImagesTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceTable">
+              <PropertyRef Name="ServiceID" />
+            </Principal>
+            <Dependent Role="ServiceImagesTable">
+              <PropertyRef Name="ServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KmTableEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CategoryTable" EntityType="Self.CategoryTable" />
+          <EntitySet Name="SeasonTable" EntityType="Self.SeasonTable" />
+          <EntitySet Name="ServiceImagesTable" EntityType="Self.ServiceImagesTable" />
+          <EntitySet Name="ServiceTable" EntityType="Self.ServiceTable" />
+          <AssociationSet Name="FK_SeasonKey" Association="Self.FK_SeasonKey">
+            <End Role="SeasonTable" EntitySet="SeasonTable" />
+            <End Role="CategoryTable" EntitySet="CategoryTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServiceKey" Association="Self.FK_ServiceKey">
+            <End Role="CategoryTable" EntitySet="CategoryTable" />
+            <End Role="ServiceTable" EntitySet="ServiceTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImagesKey" Association="Self.FK_ImagesKey">
+            <End Role="ServiceTable" EntitySet="ServiceTable" />
+            <End Role="ServiceImagesTable" EntitySet="ServiceImagesTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище u0263406_kmtableModelContainer" CdmEntityContainer="KmTableEntities">
+          <EntitySetMapping Name="CategoryTable">
+            <EntityTypeMapping TypeName="u0263406_kmtableModel.CategoryTable">
+              <MappingFragment StoreEntitySet="CategoryTable">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SeasonID" ColumnName="SeasonID" />
+                <ScalarProperty Name="CategoryNameRus" ColumnName="CategoryNameRus" />
+                <ScalarProperty Name="CategoryNameCh" ColumnName="CategoryNameCh" />
+                <ScalarProperty Name="CategoryDescriptionRus" ColumnName="CategoryDescriptionRus" />
+                <ScalarProperty Name="CategoryDescriptionCh" ColumnName="CategoryDescriptionCh" />
+                <ScalarProperty Name="CategoryPicture" ColumnName="CategoryPicture" />
+                <ScalarProperty Name="CategoryUrlName" ColumnName="CategoryUrlName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SeasonTable">
+            <EntityTypeMapping TypeName="u0263406_kmtableModel.SeasonTable">
+              <MappingFragment StoreEntitySet="SeasonTable">
+                <ScalarProperty Name="SeasonID" ColumnName="SeasonID" />
+                <ScalarProperty Name="SeasonNameRus" ColumnName="SeasonNameRus" />
+                <ScalarProperty Name="SeasonNameCh" ColumnName="SeasonNameCh" />
+                <ScalarProperty Name="SeasonDescriptionRus" ColumnName="SeasonDescriptionRus" />
+                <ScalarProperty Name="SeasonDescriptionCh" ColumnName="SeasonDescriptionCh" />
+                <ScalarProperty Name="SeasonUrlName" ColumnName="SeasonUrlName" />
+                <ScalarProperty Name="SeasonMainImage" ColumnName="SeasonMainImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceImagesTable">
+            <EntityTypeMapping TypeName="u0263406_kmtableModel.ServiceImagesTable">
+              <MappingFragment StoreEntitySet="ServiceImagesTable">
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="ImageSrc" ColumnName="ImageSrc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceTable">
+            <EntityTypeMapping TypeName="u0263406_kmtableModel.ServiceTable">
+              <MappingFragment StoreEntitySet="ServiceTable">
+                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="ServiceNameRus" ColumnName="ServiceNameRus" />
+                <ScalarProperty Name="ServiceNameCh" ColumnName="ServiceNameCh" />
+                <ScalarProperty Name="ServiceDescriptionRus" ColumnName="ServiceDescriptionRus" />
+                <ScalarProperty Name="ServiceDescriptionCh" ColumnName="ServiceDescriptionCh" />
+                <ScalarProperty Name="ServiceMainPicture" ColumnName="ServiceMainPicture" />
+                <ScalarProperty Name="ServicePrice" ColumnName="ServicePrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

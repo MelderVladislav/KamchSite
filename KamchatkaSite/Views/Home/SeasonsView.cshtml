@@ -1,0 +1,14 @@
+﻿@model IEnumerable<SeasonTable>
+@{
+    ViewBag.Title = "SeasonView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SeasonView</h2>
+Здесь времена года
+@foreach(SeasonTable season in Model)
+{
+    <div class="seasonimagediv">
+        <img class="seasonimage" src=@season.SeasonMainImage />
+    </div>
+}

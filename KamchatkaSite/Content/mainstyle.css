@@ -1,0 +1,24 @@
+﻿header {
+
+width: 100%;
+ background: url(../Content/images/headerimg.jpg) no-repeat center bottom;
+ padding: 30% 0 0 0;
+}
+#headerimg{
+    width:100%;
+    height:10%;
+}
+#maincontainer{
+    width:70%;
+    margin-left:auto;
+    margin-right:auto;
+}
+.seasonimagediv{
+    width:70%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:2%;
+}
+.seasonimage{
+    width:100%;
+}

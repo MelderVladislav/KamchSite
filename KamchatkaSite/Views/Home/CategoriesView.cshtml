@@ -1,0 +1,15 @@
+﻿@model IEnumerable<CategoryTable>
+@{
+    ViewBag.Title = "CategoriesView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CategoriesView</h2>
+Здесь категории
+
+@foreach (CategoryTable categorydata in Model)
+{
+    <div>
+        <img src=@categorydata.CategoryPicture />
+    </div>
+}
