@@ -22,3 +22,16 @@ width: 100%;
 .seasonimage{
     width:100%;
 }
+
+.servicediv{
+    float:left;
+    width:33%;
+    margin-bottom:3%;
+}
+.servicediv img{
+    width:80%;
+    margin-left:auto;
+    margin-right:auto;
+    float:none;
+   
+}

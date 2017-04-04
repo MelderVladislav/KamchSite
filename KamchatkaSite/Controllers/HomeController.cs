@@ -33,7 +33,7 @@ namespace KamchatkaSite.Controllers
             {
                 selectedCategory = context.CategoryTable.Where(c => c.CategoryUrlName.Equals(categoryName)).FirstOrDefault();
                 List<ServiceTable> definedServices = context.ServiceTable.Where(c => c.CategoryID == selectedCategory.CategoryID).ToList();
-                return View("CategoriesView", definedServices);
+                return View("ServicesView", definedServices);
             }
             else
             {

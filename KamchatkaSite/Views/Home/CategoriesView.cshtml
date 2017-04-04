@@ -9,7 +9,12 @@
 
 @foreach (CategoryTable categorydata in Model)
 {
-    <div>
-        <img src=@categorydata.CategoryPicture />
+    <div class="thumbs">
+        <a href=@Url.RouteUrl(new { controller="Home",action="Service",seasonName=categorydata.SeasonTable.SeasonUrlName, categoryName = categorydata.CategoryUrlName })><img class="seasonimage" src=@categorydata.CategoryPicture /></a>
+        <div class="caption">
+            <span class="title">Заголовок картинки</span>
+            <span class="info">Краткое описание или анонс записи</span>
+        </div>
     </div>
+
 }

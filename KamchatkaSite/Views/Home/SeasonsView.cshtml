@@ -6,9 +6,20 @@
 
 <h2>SeasonView</h2>
 Здесь времена года
-@foreach(SeasonTable season in Model)
+
+@foreach (SeasonTable season in Model)
 {
-    <div class="seasonimagediv">
-        <img class="seasonimage" src=@season.SeasonMainImage />
+    <div class="thumbs">
+        <a href= @Url.RouteUrl(new { controller="Home",action="Service",seasonName=season.SeasonUrlName}) ><img class="seasonimage" src=@season.SeasonMainImage /></a>
+        <div class="caption">
+            <span class="title">Заголовок картинки</span>
+            <span class="info">Краткое описание или анонс записи</span>
+        </div>
     </div>
+    
 }
+<!--
+<div class="seasonimagediv">
+    <img class="seasonimage" src= />
+</div>
+    -->

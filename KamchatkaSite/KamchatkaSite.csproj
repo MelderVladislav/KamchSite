@@ -215,11 +215,13 @@
     <Content Include="Content\images\day6.JPG" />
     <Content Include="Content\images\day7.jpg" />
     <Content Include="Content\images\headerimg.jpg" />
+    <Content Include="Content\images\headerimg2.jpg" />
     <Content Include="Content\images\rivervalley.jpg" />
     <Content Include="Content\images\summercategory1.jpg" />
     <Content Include="Content\images\summercategory2.jpg" />
     <Content Include="Content\images\summerimg.jpg" />
     <Content Include="Content\images\winterimg.jpg" />
+    <Content Include="Content\imgtext.css" />
     <Content Include="Content\mainstyle.css" />
     <Content Include="Content\reset.css" />
     <Content Include="favicon.ico" />
