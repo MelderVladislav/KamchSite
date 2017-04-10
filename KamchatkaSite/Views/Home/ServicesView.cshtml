@@ -3,13 +3,64 @@
     ViewBag.Title = "ServicesView";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<link rel="stylesheet" type="text/css" href="~/Content/popupwindow.css" />
 <h2>ServicesView</h2>
 Здесь услуги
+<div class="container">
+    <div class="row">
+        @foreach (ServiceTable serv in Model)
+        {
+          
+                    <div class="col-lg-4 servicediv">
+                        <a onclick="MakeRequest(@serv.ServiceID)">
+                            <img src=@serv.ServiceMainPicture class="center-block" />
+                        </a>
+                        <input type="button" value="Запрос" onclick="MakeRequest(@serv.ServiceID)" />
+                    </div>
+              
+           
+        }
+     </div>
+</div>
 
-@foreach(ServiceTable serv in Model)
-{
-    <div class="servicediv">
-        <img src=@serv.ServiceMainPicture />
-    </div>
-}
+<!-- Задний прозрачный фон-->
+<div onclick="show('none')" id="wrap"></div>
+
+<!-- Само окно-->
+<div id="popupwindow">
+<p id="result"></p>
+
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+    function MakeRequest(id)
+    {
+        
+        $.ajax({
+            url: "@Url.Action("ServiceAjaxData")",
+            type: "POST",
+            data: "id=" + id,
+            success: function(response) {
+                var target = $("#result");
+                target.empty();
+                target.append("<p>" + response.ServiceNameRus + "</p><p>" + response.ServiceDescriptionRus + "</p>");
+            },
+        });
+       
+    }
+    function ParseResponse(response)
+    {
+        var target = $("#result");
+        target.empty();
+        target.append("<p>" + response.ServiceNameRus + "</p><p>" + response.ServiceDescriptionRus + "</p>");
+        show('block');
+    }
+    function show(state) {
+
+        document.getElementById('popupwindow').style.display = state;
+        document.getElementById('wrap').style.display = state;
+    }
+</script>
+

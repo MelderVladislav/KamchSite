@@ -5,19 +5,27 @@
 }
 
 <h2>SeasonView</h2>
-Здесь времена года
+<div class="container">
+    <div class="row">
+        @foreach (SeasonTable season in Model)
+        {
 
-@foreach (SeasonTable season in Model)
-{
-    <div class="thumbs">
-        <a href= @Url.RouteUrl(new { controller="Home",action="Service",seasonName=season.SeasonUrlName}) ><img class="seasonimage" src=@season.SeasonMainImage /></a>
-        <div class="caption">
-            <span class="title">Заголовок картинки</span>
-            <span class="info">Краткое описание или анонс записи</span>
-        </div>
+            <div class="col-lg-6 col-md-4 col-sm-4">
+                <a href=@Url.RouteUrl(new { controller="Home",action="Service",seasonName=season.SeasonUrlName})>
+                    <div class="thumbs">
+                        <img class="seasonimage center-block" src=@season.SeasonMainImage />
+
+                        <div class="caption">
+                            <span class="title">@season.SeasonNameRus</span>
+                            <span class="info">@season.SeasonDescriptionRus</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        }
     </div>
-    
-}
+    </div>
 <!--
 <div class="seasonimagediv">
     <img class="seasonimage" src= />

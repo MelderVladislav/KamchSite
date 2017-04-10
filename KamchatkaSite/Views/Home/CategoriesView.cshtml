@@ -5,15 +5,14 @@
 }
 
 <h2>CategoriesView</h2>
-Здесь категории
 
 @foreach (CategoryTable categorydata in Model)
 {
     <div class="thumbs">
         <a href=@Url.RouteUrl(new { controller="Home",action="Service",seasonName=categorydata.SeasonTable.SeasonUrlName, categoryName = categorydata.CategoryUrlName })><img class="seasonimage" src=@categorydata.CategoryPicture /></a>
         <div class="caption">
-            <span class="title">Заголовок картинки</span>
-            <span class="info">Краткое описание или анонс записи</span>
+            <span class="title">@categorydata.CategoryNameRus </span>
+            <span class="info">@categorydata.CategoryDescriptionRus</span>
         </div>
     </div>
 

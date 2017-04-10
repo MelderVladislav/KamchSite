@@ -8,30 +8,16 @@ width: 100%;
     width:100%;
     height:10%;
 }
-#maincontainer{
-    width:70%;
-    margin-left:auto;
-    margin-right:auto;
-}
-.seasonimagediv{
-    width:70%;
-    margin-left:auto;
-    margin-right:auto;
-    margin-bottom:2%;
-}
+
+
 .seasonimage{
-    width:100%;
+    width:90%;
 }
 
 .servicediv{
-    float:left;
-    width:33%;
-    margin-bottom:3%;
+    margin-bottom:50px;
 }
 .servicediv img{
-    width:80%;
-    margin-left:auto;
-    margin-right:auto;
-    float:none;
+    width:95%;
    
 }

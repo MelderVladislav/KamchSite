@@ -1,7 +1,7 @@
 ﻿.thumbs {
   width: 80%;
   max-width: 100%; /* опционально */
-  margin: 2%;
+
   opacity: .99;
   overflow: hidden;
   position: relative;
@@ -61,12 +61,9 @@
 .thumbs .caption .title {
   line-height: 1;
   font-weight: normal;
-  font-size: 18px;
 }
 .thumbs .caption .info {
   line-height: 1.2;
-  margin-top: 5px;
-  font-size: 12px;
 }
 .thumbs:focus:before,
 .thumbs:focus span, .thumbs:hover:before,
@@ -86,4 +83,10 @@
 .thumbs:focus .info, .thumbs:hover .info {
   -webkit-transition-delay: 0.25s;
           transition-delay: 0.25s;
+}
+.title{
+    font-size:2.5vw;
+}
+.info{
+    font-size:2vw;
 }
